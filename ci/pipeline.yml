@@ -1,0 +1,28 @@
+---
+jobs:
+- name: build-resource-image
+  plan:
+  - get: source-code
+    trigger: true
+  - put: docker-hub
+    params:
+      build: build-output
+
+
+resources:
+- name: source-code
+  type: git
+  check_every: 1h
+  source:
+    uri: https://github.com/ECSTeam/concourse-lab7b.git
+    branch: master
+    username: {{github_username}}
+    password: {{github_password}}
+	
+- name: docker-hub
+  type: docker-image
+  source:
+    repository: neppalli757/cfops-repo
+    email: {{docker-hub-email}}
+    username: {{docker-hub-username}}
+    password: {{docker-hub-password}}
