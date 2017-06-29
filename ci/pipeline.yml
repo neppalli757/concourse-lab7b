@@ -18,7 +18,7 @@ resources:
     branch: master
     username: {{github_username}}
     password: {{github_password}}
-	
+    	
 - name: docker-hub
   type: docker-image
   source:
